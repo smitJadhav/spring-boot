@@ -1,0 +1,38 @@
+1. Important concepts in spring app security
+Authentication
+Principal
+Authorization
+Role
+
+2. 
+WebSecurityConfigurerAdapter
+AuthenticationManagerBuilder
+AuthenticationManager
+HttpSecurity
+
+@Override
+configure(AuthenticationManagerBuilder auth) - Authentication
+
+@Override
+configure(HttpSecurity http) - Authorization
+
+3. How spring authentication works?
+Spring security adds filter chain in front of application to interecept each incoming request.
+Internally it uses filter called DeligatingFilterProxy to handle requests.
+
+Authentication - holds the user credentials and once user is authenticated it holds principal(that user info).
+This is accomplished using AuthenticationProvider.
+
+AuthenticationProvider - has a method authenticate() - we need to provide implementation - This method does the actual authentication.
+We can have many authenticationProvicer impl(pwd, oauth, LDAP)
+
+AuthenticationManager checks for right Authentication Provider by calling support method
+
+UserDetailService - Spring service to get User object - loadUserByUserName(), AuthenticationProvider calls this method to get user object by userName. This is the Principal.
+
+This principal is then stored in security context in ThreadLocal.
+There is another filter which stores this principal and uses this for futher requests and maintains user session.
+
+
+
+
