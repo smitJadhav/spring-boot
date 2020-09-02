@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /auth-jdbc-service
+spring:
+  active:
+    profile: dev
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true # for local testing
+
+
