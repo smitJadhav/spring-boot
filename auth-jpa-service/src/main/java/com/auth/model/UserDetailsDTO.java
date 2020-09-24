@@ -24,11 +24,11 @@ public class UserDetailsDTO implements UserDetails {
     private String lastName;
     private String password;
     private String email;
-    private boolean isLocked;
+    private boolean isNonLocked;
     private boolean isActive;
     private Integer numberOfAttempts;
     private String statusChangeReason;
-    private Gender gender;
+    private String gender;
     private String role;
 
     @Override
@@ -49,21 +49,21 @@ public class UserDetailsDTO implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isLocked;
+        return isNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
