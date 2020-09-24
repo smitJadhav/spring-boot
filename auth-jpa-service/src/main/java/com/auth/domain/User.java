@@ -2,6 +2,8 @@ package com.auth.domain;
 
 import com.auth.domain.base.AbstractEntity;
 import com.auth.model.Gender;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +14,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 public class User extends AbstractEntity implements Serializable {
 
     private String userName;
@@ -21,7 +25,7 @@ public class User extends AbstractEntity implements Serializable {
     private String lastName;
     private String password;
     private String email;
-    private boolean isLocked;
+    private boolean isNonLocked;
     private boolean isActive;
     private Integer numberOfAttempts;
     private String statusChangeReason;
