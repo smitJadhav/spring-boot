@@ -24,10 +24,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    // This methods gets the user saved in db and maps it to UserDetails
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        Optional<User> user = userRepository.findUserByUserName(s);
+        Optional<User> user = userRepository.findUserByUserName(userName);
         user.orElseThrow(() ->new UsernameNotFoundException("User not Found"));
         UserDetailsDTO userDetailsDTO = userMapper.mapUserToUserDetailsDTO(user.get());
         return userDetailsDTO;
