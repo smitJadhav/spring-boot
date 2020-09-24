@@ -1,7 +1,6 @@
 package com.auth.controller;
 
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,11 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    // This method is for testing authentication and authorization.
+    // Real world application will have page navigation on UI
     @GetMapping(value = "/message", produces = MediaType.TEXT_HTML_VALUE)
     public String fetchMessage() {
         return "<html>\n" + "<header><title>Welcome</title></header>\n"
                 + "<body>\n" + "<a href=\"http://localhost:8080/auth-jdbc-service/test/user\">USER</a>\n"
                 + "<a href=\"http://localhost:8080/auth-jdbc-service/test/admin\">ADMIN</a>\n"
+                + "<br>"
+                + "<br>"
+                + "<a href=\"http://localhost:8080/auth-jdbc-service/logout\">Logout</a>\n"
                 + "</body>\n" + "</html>";
     }
 

@@ -22,11 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
+    // JPA userService is used to provide authentication for logged in user.
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
 
+    // Authorization order should be from most restricted to less restricted roles
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().headers()
@@ -36,11 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/test/user/**").hasAuthority("USER")
                 .antMatchers("/health/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin()
+                .and().formLogin().defaultSuccessUrl("/test/message")
                 .and().logout();
 
     }
 
+    // This method is used to encode the password for user. I have used NoOpPasswordEncoder which does not encode any password in real.
+    // If you want encoded password to be store in DB you can use one of the most widely used BCryptPasswordEncoder instead of NoOpPasswordEncoder.
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
