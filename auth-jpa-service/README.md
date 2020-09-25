@@ -21,7 +21,7 @@ Run this application and then use below information to authenticate and authoriz
     VALUES (2, '2020-9-24T01:37:56', '2020-9-24T01:37:56', 0, 'abc@gmail.com', 'Carol', 'FEMALE', TRUE, TRUE, 'Danvers', 'xyz', 0, 'marvel', '', 'captain', 'captain', 'USER');
 
 
-2. Application Urls and
+2. Application Url and details
 
     A) Enter below url in browser. It will ask you to login. Please login with USER_NAME and PASSWORD as per your table records.
 
@@ -34,3 +34,10 @@ Run this application and then use below information to authenticate and authoriz
 
     D) Logout url
         localhost:8080/auth-jdbc-service/logout
+        
+3. This application implemented to have one role per user. If you want to have multiple roles for single user then you need to follow below guidelines.
+    
+    A) change manyToOne relation to oneToMany in User.java and make appropriate changes in database.
+
+    B) In UserDetailsDTO.java file you need to change authorities to accommodate multiple roles.
+    
